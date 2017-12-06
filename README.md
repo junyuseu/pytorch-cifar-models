@@ -1,12 +1,16 @@
-# CIFAR(10 and 100) experiment with PyTorch
+# Experiments on CIFAR datasets with PyTorch
 
 ## Introduction
 Reimplement state-of-the-art CNN models in cifar dataset with PyTorch, now including:
 
 1.[ResNet](https://arxiv.org/abs/1512.03385v1)
+
 2.[PreActResNet](https://arxiv.org/abs/1603.05027v3)
+
 3.[WideResNet](https://arxiv.org/abs/1605.07146v4)
+
 4.[ResNeXt](https://arxiv.org/abs/1611.05431v2)
+
 5.[DenseNet](https://arxiv.org/abs/1608.06993v4)
 
 other results will be added later.
@@ -15,8 +19,8 @@ other results will be added later.
 Requirements for [PyTorch](http://pytorch.org/)
 
 ## Requirements:hardware
-For most experiments, one or two K40(~11G of memory) is enough cause PyTorch is very memory efficient. However,
-to train DenseNet on cifar(10 or 100), you need at least 4 K40.
+For most experiments, one or two K40(~11G of memory) gpus is enough cause PyTorch is very memory efficient. However,
+to train DenseNet on cifar(10 or 100), you need at least 4 K40 gpus.
 
 ## Usage
 1. Clone this repository
@@ -61,21 +65,19 @@ CUDA_VISIBLE_DEVICES=0 python main.py -e --resume=fdir/model_best.pth.tar
 
 5. CIFAR100
 
-The default setting in the code is cifar10, to train with cifar100, you need specify it explicitly in the code.
+The default setting in the code is for cifar10, to train with cifar100, you need specify it explicitly in the code.
 
 ```
 model = resnet20_cifar(num_classes=100)
 ```
 
-**Note**: you should also change **fdir**
-
-In the run.sh, you should add config ```-ct 100```
+**Note**: you should also change **fdir** In the run.sh, you should set ```-ct 100```
 
 ## Results
-**Note**:The results as follow are got by only one experiment.
+**Note**:The results as follow are got by only one single experiment.
 
-We got comparable or even better than original papers, the experiment settings are totally follow 
-the original papers.
+**We got comparable or even better results than the original papers, the experiment settings are totally follow 
+the original ones**
 
 ### ResNet
 
@@ -121,5 +123,9 @@ DenseNet-BC(k=12)|100|0.8M|4.69|22.19
 DenseNet-BC(k=24)|250|15.3M||
 DenseNet-BC(k=40)|190|25.6M||
 
-
-
+# References:
+[1] K. He, X. Zhang, S. Ren, and J. Sun. Deep residual learning for image recognition. In CVPR, 2016.
+[2] K. He, X. Zhang, S. Ren, and J. Sun. Identity mappings in deep residual networks. In ECCV, 2016.
+[3] S. Zagoruyko and N. Komodakis. Wide residual networks. In BMVC, 2016.
+[4] S. Xie, G. Ross, P. Dollar, Z. Tu and K. He Aggregated residual transformations for deep neural networks. In CVPR, 2017
+[5] H. Gao, Z. Liu, L. Maaten and K. Weinberger. Densely connected convolutional networks. In CVPR, 2017
