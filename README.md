@@ -125,7 +125,11 @@ DenseNet-BC(k=40)|190|25.6M||
 
 # References:
 [1] K. He, X. Zhang, S. Ren, and J. Sun. Deep residual learning for image recognition. In CVPR, 2016.
+
 [2] K. He, X. Zhang, S. Ren, and J. Sun. Identity mappings in deep residual networks. In ECCV, 2016.
+
 [3] S. Zagoruyko and N. Komodakis. Wide residual networks. In BMVC, 2016.
+
 [4] S. Xie, G. Ross, P. Dollar, Z. Tu and K. He Aggregated residual transformations for deep neural networks. In CVPR, 2017
+
 [5] H. Gao, Z. Liu, L. Maaten and K. Weinberger. Densely connected convolutional networks. In CVPR, 2017
