@@ -39,10 +39,10 @@ def main():
     # Model building
     print('=> Building model...')
     if use_gpu:
-        # model can be set to each that I have defined in models folder
+        # model can be set to anyone that I have defined in models folder
         # note the model should match to the cifar type !
 
-        # model = resnet20_cifar()
+        model = resnet20_cifar()
         # model = resnet32_cifar()
         # model = resnet44_cifar()
         # model = resnet110_cifar()
@@ -56,10 +56,12 @@ def main():
 
         # model = resneXt_cifar(depth=29, cardinality=16, baseWidth=64, num_classes=100)
         
-        model = densenet_BC_cifar(depth=190, k=40, num_classes=100)
+        #model = densenet_BC_cifar(depth=190, k=40, num_classes=100)
 
         # mkdir a new folder to store the checkpoint and best model
-        fdir = 'result/densenet190_40_cifar100'
+        if not os.path.exists('result'):
+            os.makedirs('result')
+        fdir = 'result/resnet20_cifar10'
         if not os.path.exists(fdir):
             os.makedirs(fdir)
 

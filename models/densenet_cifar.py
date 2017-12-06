@@ -10,6 +10,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from collections import OrderedDict
 
+import math
 
 class _DenseLayer(nn.Sequential):
     def __init__(self, num_input_features, growth_rate, bn_size, drop_rate):
@@ -89,6 +90,15 @@ class DenseNet_Cifar(nn.Module):
 
         # Linear layer
         self.classifier = nn.Linear(num_features, num_classes)
+        
+        # initialize conv and bn variables
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+                m.weight.data.normal_(0, math.sqrt(2. / n))
+            elif isinstance(m, nn.BatchNorm2d):
+                m.weight.data.fill_(1)
+                m.bias.data.zero_()
 
     def forward(self, x):
         features = self.features(x)
@@ -105,7 +115,7 @@ def densenet_BC_cifar(depth, k, **kwargs):
 
 
 if __name__ == '__main__':
-    net = densenet_cifar(190, 40, num_classes=100)
+    net = densenet_BC_cifar(190, 40, num_classes=100)
     input = torch.autograd.Variable(torch.randn(1, 3, 32, 32))
     y = net(input)
     print(net)
