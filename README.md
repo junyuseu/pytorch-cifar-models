@@ -57,6 +57,9 @@ nohup sh run.sh > resnet20_cifar10.log &
 After training, the training log will be recorded in the .log file, the best model(on the test set) 
 will be stored in the fdir.
 
+**Note:**For first training, cifar10 or cifar100 dataset will be downloaded, so make sure your comuter is online.
+Otherwise, download the datasets and decompress them and put them in the ```data``` folder.
+
 4. Test
 
 ```

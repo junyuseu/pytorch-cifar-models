@@ -91,7 +91,7 @@ class DenseNet_Cifar(nn.Module):
         # Linear layer
         self.classifier = nn.Linear(num_features, num_classes)
         
-        # initialize conv and bn variables
+        # initialize conv and bn parameters
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
