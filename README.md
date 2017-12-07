@@ -114,7 +114,7 @@ depth-k|#params|CIFAR-10|CIFAR-100
 
 network|#params|CIFAR-10|CIFAR-100
 :---:|:---:|:---:|:---:
-ResNeXt-29,1x64d|-|4.51|22.09
+ResNeXt-29,1x64d|4.9M|4.51|22.09
 ResNeXt-29,8x64d|34.4M|3.78|17.44
 ResNeXt-29,16x64d|68.1M|**3.69**|**17.11**
 
