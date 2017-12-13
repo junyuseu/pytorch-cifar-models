@@ -123,8 +123,8 @@ ResNeXt-29,16x64d|68.1M|**3.69**|**17.11**
 network|depth|#params|CIFAR-10|CIFAR-100
 :---:|:---:|:---:|:---:|:---:
 DenseNet-BC(k=12)|100|0.8M|4.69|22.19
-DenseNet-BC(k=24)|250|15.3M||
-DenseNet-BC(k=40)|190|25.6M||
+DenseNet-BC(k=24)|250|15.3M|3.44|
+DenseNet-BC(k=40)|190|25.6M|**3.41**|**17.33**
 
 # References:
 [1] K. He, X. Zhang, S. Ren, and J. Sun. Deep residual learning for image recognition. In CVPR, 2016.
