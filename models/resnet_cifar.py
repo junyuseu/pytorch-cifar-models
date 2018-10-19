@@ -321,8 +321,8 @@ def preact_resnet1001_cifar(**kwargs):
 
 
 if __name__ == '__main__':
-    net = preact_resnet110_cifar()
-    y = net(torch.autograd.Variable(torch.randn(1, 3, 32, 32)))
+    net = resnet20_cifar()
+    y = net(torch.randn(1, 3, 64, 64))
     print(net)
     print(y.size())
 

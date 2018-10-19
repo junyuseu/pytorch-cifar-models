@@ -6,7 +6,6 @@ Reference:
 """
 import torch
 import torch.nn as nn
-from torch.autograd import Variable
 import math
 from resnet_cifar import BasicBlock
 
@@ -73,7 +72,7 @@ def wide_resnet_cifar(depth, width, **kwargs):
 
 if __name__=='__main__':
     net = wide_resnet_cifar(20, 10)
-    y = net(Variable(torch.randn(1, 3, 32, 32)))
+    y = net(torch.randn(1, 3, 32, 32))
     print(isinstance(net, Wide_ResNet_Cifar))
     print(y.size())
 

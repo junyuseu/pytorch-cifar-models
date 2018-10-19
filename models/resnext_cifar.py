@@ -7,7 +7,6 @@ Reference:
 
 import torch
 import torch.nn as nn
-from torch.autograd import Variable
 import math
 
 
@@ -118,6 +117,6 @@ def resneXt_cifar(depth, cardinality, baseWidth, **kwargs):
 
 if __name__ == '__main__':
     net = resneXt_cifar(29, 16, 64)
-    y = net(Variable(torch.randn(1, 3, 32, 32)))
+    y = net(torch.randn(1, 3, 32, 32))
     print(net)
     print(y.size())

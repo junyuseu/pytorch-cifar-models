@@ -8,7 +8,6 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 import torch.backends.cudnn as cudnn
-from torch.autograd import Variable
 
 
 import torchvision
@@ -206,16 +205,14 @@ def train(trainloader, model, criterion, optimizer, epoch):
         data_time.update(time.time() - end)
 
         input, target = input.cuda(), target.cuda()
-        input_var = Variable(input)
-        target_var = Variable(target)
 
         # compute output
-        output = model(input_var)
-        loss = criterion(output, target_var)
+        output = model(input)
+        loss = criterion(output, target)
 
         # measure accuracy and record loss
-        prec = accuracy(output.data, target)[0]
-        losses.update(loss.data[0], input.size(0))
+        prec = accuracy(output, target)[0]
+        losses.update(loss.item(), input.size(0))
         top1.update(prec[0], input.size(0))
 
         # compute gradient and do SGD step
@@ -246,26 +243,25 @@ def validate(val_loader, model, criterion):
     model.eval()
 
     end = time.time()
-    for i, (input, target) in enumerate(val_loader):
-        input, target = input.cuda(), target.cuda()
-        input_var = Variable(input, volatile=True)
-        target_var = Variable(target, volatile=True)
+    with torch.no_grad():
+        for i, (input, target) in enumerate(val_loader):
+            input, target = input.cuda(), target.cuda()
 
-        # compute output
-        output = model(input_var)
-        loss = criterion(output, target_var)
+            # compute output
+            output = model(input)
+            loss = criterion(output, target)
 
-        # measure accuracy and record loss
-        prec = accuracy(output.data, target)[0]
-        losses.update(loss.data[0], input.size(0))
-        top1.update(prec[0], input.size(0))
+            # measure accuracy and record loss
+            prec = accuracy(output, target)[0]
+            losses.update(loss.item(), input.size(0))
+            top1.update(prec[0], input.size(0))
 
-        # measure elapsed time
-        batch_time.update(time.time() - end)
-        end = time.time()
+            # measure elapsed time
+            batch_time.update(time.time() - end)
+            end = time.time()
 
-        if i % args.print_freq == 0:
-            print('Test: [{0}/{1}]\t'
+            if i % args.print_freq == 0:
+                print('Test: [{0}/{1}]\t'
                   'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
                   'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
                   'Prec {top1.val:.3f}% ({top1.avg:.3f}%)'.format(
