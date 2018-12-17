@@ -7,7 +7,7 @@ Reference:
 import torch
 import torch.nn as nn
 import math
-from resnet_cifar import BasicBlock
+from models.resnet_cifar import BasicBlock
 
 
 class Wide_ResNet_Cifar(nn.Module):
